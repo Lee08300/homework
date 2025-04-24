@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李志詳個人簡介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "標楷體", sans-serif;
+      background-color: #f5f5f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #a8c686;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #d8e7b3;
+    }
+
+    nav button {
+      padding: 14px 20px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      color: #3e5832;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      background-color: #c4ddaa;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .tab {
+      display: none;
+      width: 100%;
+      max-width: 800px;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .tab.active {
+      display: block;
+    }
+
+    footer {
+      background-color: #d8e7b3;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      nav button {
+        flex: 1 1 100%;
+        text-align: center;
+        padding: 10px;
+      }
+    }
+
+    .image-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .image-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>李志詳個人簡介</h1>
+  </header>
+
+  <nav>
+    <button onclick="showTab('home')">基本資料</button>
+    <button onclick="showTab('test')">測驗結果</button>
+    <button onclick="showTab('mis')">MIS工作分析</button>
+    <button onclick="showTab('resume')">求職履歷</button>
+  </nav>
+
+  <div class="container">
+    <!-- 基本資料 -->
+    <div class="tab active" id="home">
+      <h2>基本資料</h2>
+      <p>姓名: 李志詳</p>
+      <p>系級: 資管三B</p>
+      <p>學號: 411146449</p>
+      <p>Tel: <a href="tel:0905657800">0905657800</a></p>
+      <p>E-Mail: <a href="mailto:leostudent18@gmail.com">leostudent18@gmail.com</a></p>
+      <h3>經歷</h3>
+      <p>關西高中、靜宜大學</p>
+      <h3>興趣</h3>
+      <p>關懷他人</p>
+    </div>
+
+    <!-- 測驗結果 -->
+    <div class="tab" id="test">
+      <h2>測驗結果</h2>
+      <p>我的 Holland 碼類型為：A 藝術型 & E 企業型</p>
+
+      <div class="image-box">
+        <img src="{{ url_for('static', filename='image.jpg') }}" alt="Holland人格圖">
+      </div>
+
+      <p>此類型最常從事的職業</p>
+
+      <div class="image-box">
+        <img id="pic" 
+             src="{{ url_for('static', filename='image2.jpg') }}" 
+             alt="Holland職業圖"
+             onmouseover="this.src='{{ url_for('static', filename='image2_hover.jpg') }}'"
+             onmouseout="this.src='{{ url_for('static', filename='image2.jpg') }}'">
+      </div>
+    </div>
+
+    <!-- MIS 分析 -->
+    <div class="tab" id="mis">
+      <h2>MIS工作分析</h2>
+      <p>管理資訊系統（Management Information Systems, MIS）是一個結合資訊科技與商業管理的領域，致力於透過資訊系統提升組織決策效率與營運績效。</p>
+      
+      <h3>職位範例：系統分析師</h3>
+      <p>系統分析師的主要工作包括與使用者進行需求訪談、進行資料流程分析、設計資訊系統架構，並與開發人員合作完成系統實作與測試。</p>
+      
+      <h3>需要的能力與特質</h3>
+      <ul>
+        <li>邏輯思維與系統設計能力</li>
+        <li>良好的溝通與團隊合作能力</li>
+        <li>基本的程式設計與資料庫知識</li>
+        <li>具備專案管理觀念</li>
+      </ul>
+
+      <h3>職涯發展</h3>
+      <p>MIS相關領域的工作職缺廣泛，包括：系統分析師、資料分析師、IT專案經理、資訊安全分析師等。</p>
+    </div>
+
+    <!-- 求職履歷 -->
+    <div class="tab" id="resume">
+      <h2>求職履歷</h2>
+      <h3>個人資料</h3>
+      <p>姓名：李志詳</p>
+      <p>電話：<a href="tel:0905657800">0905657800</a></p>
+      <p>Email：<a href="mailto:leostudent18@gmail.com">leostudent18@gmail.com</a></p>
+
+      <div class="image-box">
+        <img src="{{ url_for('static', filename='image3.jpg') }}" alt="履歷圖">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Copyright © 李志詳. All Rights Reserved.
+  </footer>
+
+  <script>
+    function showTab(id) {
+      const tabs = document.querySelectorAll(".tab");
+      tabs.forEach(tab => tab.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
